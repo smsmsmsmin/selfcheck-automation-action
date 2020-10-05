@@ -26,8 +26,8 @@ jobs:
         name: Run selfcheck command
         with: 
           args: | 
-                 --location --request POST 'https://goehcs.eduro.go.kr/registerServey' --header 'Authorization: ${{ secrets.token }}' --header 'Content-Type: application/json' --header 'Cookie: ${{ secrets.cookie }}' --data-raw ' {"rspns01": "1", "rspns02": "1", "rspns03": null, "rspns04": null, "rspns05": null, "rspns06": null, "rspns07": "0", "rspns08": "0", "rspns09": "0", "rspns10": null, "rspns11": null, "rspns12": null, "rspns13": null, "rspns14": null, "rspns15": null, "rspns00": "Y", "deviceUuid": "", "upperToken": "${{ secrets.token }}", "upperUserNameEncpt": "${{ secrets.name }}" }'
-          
+              --location --request POST 'https://cors-anywhere.herokuapp.com/https://goehcs.eduro.go.kr/registerServey' --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlhdCI6MTYwMTgyOTY2NjA3Mn0.eyJubyI6IjIwMjAwMDAwMDkiLCJvcmciOiJKMTAwMDAwODU1IiwiZXhwIjoxNjMzMzY1NjY2LCJpYXQiOjE2MDE4Mjk2NjYwNzJ9.nLHS3JU-bH30uMsAmsSe5H5b0tdbYsemCAL6KNL2COE' --header 'Content-Type: application/json' --header 'Cookie: WAF=3e0b84fd5bafd537bc0a961eb4626ae2' --header 'origin: https://hcs.eduro.go.kr'  --data-raw ' {"rspns01": "1", "rspns02": "1", "rspns03": null, "rspns04": null, "rspns05": null, "rspns06": null, "rspns07": "0", "rspns08": "0", "rspns09": "0", "rspns10": null, "rspns11": null, "rspns12": null, "rspns13": null, "rspns14": null, "rspns15": null, "rspns00": "Y", "deviceUuid": "", "upperToken": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlhdCI6MTYwMTgyOTY2NjA3Mn0.eyJubyI6IjIwMjAwMDAwMDkiLCJvcmciOiJKMTAwMDAwODU1IiwiZXhwIjoxNjMzMzY1NjY2LCJpYXQiOjE2MDE4Mjk2NjYwNzJ9.nLHS3JU-bH30uMsAmsSe5H5b0tdbYsemCAL6KNL2COE", "upperUserNameEncpt": "이승민" }'
+
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
