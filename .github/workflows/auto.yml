@@ -22,9 +22,11 @@ jobs:
       
       # Runs a set of commands using the runners shell
       - id: run
+        uses: wei/curl@v1
         name: Run selfcheck command
-        run: |
-          curl --location --request GET 'https://goehcs.eduro.go.kr/registerServey' --header 'Authorization: ${{ secrets.token }}' --header 'Content-Type: application/json' --header 'Cookie: ${{ secrets.cookie }}' --data-raw ' {"rspns01": "1", "rspns02": "1", "rspns03": null, "rspns04": null, "rspns05": null, "rspns06": null, "rspns07": "0", "rspns08": "0", "rspns09": "0", "rspns10": null, "rspns11": null, "rspns12": null, "rspns13": null, "rspns14": null, "rspns15": null, "rspns00": "Y", "deviceUuid": "", "upperToken": "${{ secrets.token }}", "upperUserNameEncpt": "${{ secrets.name }}" }'
+        with: 
+          args: | 
+                 --location --request GET 'https://goehcs.eduro.go.kr/registerServey' --header 'Authorization: ${{ secrets.token }}' --header 'Content-Type: application/json' --header 'Cookie: ${{ secrets.cookie }}' --data-raw ' {"rspns01": "1", "rspns02": "1", "rspns03": null, "rspns04": null, "rspns05": null, "rspns06": null, "rspns07": "0", "rspns08": "0", "rspns09": "0", "rspns10": null, "rspns11": null, "rspns12": null, "rspns13": null, "rspns14": null, "rspns15": null, "rspns00": "Y", "deviceUuid": "", "upperToken": "${{ secrets.token }}", "upperUserNameEncpt": "${{ secrets.name }}" }'
           
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
