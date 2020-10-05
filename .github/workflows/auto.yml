@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        
+      # Runs a set of commands using the runners shell
+      - id: run
+      - name: Run selfcheck command
+        run: |
+          curl --location --request POST 'https://goehcs.eduro.go.kr/registerServey' --header 'Authorization: ${{ secrets.token }}' --header 'Content-Type: application/json' --header 'Cookie: ${{ secrets.cookie }}' --data-raw ' {"rspns01": "1", "rspns02": "1", "rspns03": null, "rspns04": null, "rspns05": null, "rspns06": null, "rspns07": "0", "rspns08": "0", "rspns09": "0", "rspns10": null, "rspns11": null, "rspns12": null, "rspns13": null, "rspns14": null, "rspns15": null, "rspns00": "Y", "deviceUuid": "", "upperToken": "${{ secrets.token }}", "upperUserNameEncpt": "${{ secrets.name }}" }'
+          
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: 1
+          body: ${{ steps.run.outputs.body }}
